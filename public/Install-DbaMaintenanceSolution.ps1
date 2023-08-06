@@ -593,13 +593,15 @@ function Install-DbaMaintenanceSolution {
 
                 if ("HourlyLog" -in $AutoScheduleJobs) {
                     $logparams = @{
-                        SqlInstance       = $server
-                        Job               = "DatabaseBackup - USER_DATABASES - LOG"
-                        Schedule          = "Hourly Log Backup"
-                        FrequencyType     = "Daily"
-                        FrequencyInterval = 1
-                        StartTime         = "003000"
-                        Force             = $true
+                        SqlInstance             = $server
+                        Job                     = "DatabaseBackup - USER_DATABASES - LOG"
+                        Schedule                = "Hourly Log Backup"
+                        FrequencyType           = "Daily"
+                        FrequencyInterval       = 1
+                        FrequencySubDayInterval = 1
+                        FrequencySubDayType     = "Hour"
+                        StartTime               = "003000"
+                        Force                   = $true
                     }
                 } else {
                     $logparams = @{
